@@ -68,7 +68,7 @@ class PegasosBase(BaseEstimator, ClassifierMixin):
         # training algorithm requires the labels to be -1 and +1.
         y[y==0] = -1
 
-        X = atleast2d_or_csr(X, dtype=np.float64, order="C")
+        X = check_array(X, dtype=np.float64, order="C")
 
         if X.shape[0] != y.shape[0]:
             raise ValueError("X and y have incompatible shapes.\n"
