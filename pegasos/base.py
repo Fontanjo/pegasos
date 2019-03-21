@@ -14,18 +14,24 @@
     limitations under the License.
 """
 
-
+import warnings
 from abc import ABCMeta, abstractmethod
+
+import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.preprocessing import LabelEncoder
-from sklearn.utils import atleast2d_or_csr
+try:
+    from sklearn.utils import check_array
+except ImportError as e:
+    warnings.warn(str(e)+'\n'
+                  + '`from sklearn.utils import check_array` failed.\n'
+                  + 'Using `from sklearn.utils import atleast2d_or_csr` instead.')
+    from sklearn.utils import atleast2d_or_csr as check_array
 from scipy import sparse
 
 from . import pegasos, constants
 from .weight_vector import WeightVector
 
-import numpy as np
-import warnings
 
 class PegasosBase(BaseEstimator, ClassifierMixin):
     __metaclass__ = ABCMeta
@@ -62,7 +68,7 @@ class PegasosBase(BaseEstimator, ClassifierMixin):
         # training algorithm requires the labels to be -1 and +1.
         y[y==0] = -1
 
-        X = atleast2d_or_csr(X, dtype=np.float64, order="C")
+        X = check_array(X, dtype=np.float64, order="C")
 
         if X.shape[0] != y.shape[0]:
             raise ValueError("X and y have incompatible shapes.\n"
@@ -113,4 +119,3 @@ class PegasosBase(BaseEstimator, ClassifierMixin):
         if not hasattr(self, '_enc'):
             raise ValueError('must call `fit` before `classes_`')
         return self._enc.classes_
-
