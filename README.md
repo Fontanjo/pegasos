@@ -2,7 +2,9 @@ pegasos
 =======
 pegasos is a pure-python package for fitting SVM and logistic models using the Primal Estimated sub-GrAdient SOlver. This implementation is based on the google tool `sofia-ml`. The package has an sklearn-like interface so can easily be used with existing sklearn functionality. At each training step, the pegasos solver randomly samples a batch from the training data. The runtime of the training algorithm scales linearly with the regularization parameter `lambda` and the number of training steps; as such the model is well suited to large datasets. For details on the training algorithm see: 
 
-http://eprints.pascal-network.org/archive/00004062/01/ShalevSiSr07.pdf
+Shalev-Shwartz, S., Singer, Y., Srebro, N. et al. (2011): Pegasos: primal estimated sub-gradient solver for SVM  https://doi.org/10.1007/s10107-010-0420-4
+or
+http://www.ee.oulu.fi/research/imag/courses/Vedaldi/ShalevSiSr07.pdf
 
 API support
 -----------
