@@ -33,9 +33,7 @@ from . import pegasos, constants
 from .weight_vector import WeightVector
 
 
-class PegasosBase(BaseEstimator, ClassifierMixin):
-    __metaclass__ = ABCMeta
-
+class PegasosBase(BaseEstimator, ClassifierMixin, metaclass=ABCMeta):
     @abstractmethod
     def __init__(self,
                  iterations,

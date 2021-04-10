@@ -22,9 +22,7 @@ from . import constants
 
 import numpy as np
 
-class SVMPegasosBase(PegasosBase):
-    __metaclass__ = ABCMeta
-
+class SVMPegasosBase(PegasosBase, metaclass=ABCMeta):
     @abstractmethod
     def __init__(self,
                  iterations,
@@ -44,9 +42,7 @@ class SVMPegasosBase(PegasosBase):
                 verbose)
 
 
-class LogisticPegasosBase(PegasosBase):
-    __metaclass__ = ABCMeta
-
+class LogisticPegasosBase(PegasosBase, metaclass=ABCMeta):
     @abstractmethod
     def __init__(self,
                  iterations,

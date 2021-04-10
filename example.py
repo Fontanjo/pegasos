@@ -18,7 +18,7 @@ def fit():
     end = time.clock()
     score = model.score(test_X, test_y)
 
-    print 'acc %.5f in %f seconds' % (score, end-start)
+    print('acc %.5f in %f seconds' % (score, end-start))
 
 if __name__ == '__main__':
     fit()
